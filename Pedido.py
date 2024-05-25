@@ -93,7 +93,7 @@ class Pedido:
         if conexion:
             try:
                 cursor = conexion.execute('''
-                    DELETE FROM pedido WHERE id = ?
+                    DELETE FROM pedido WHERE pedido = ?
                 ''', (clave,))
                 if cursor.rowcount > 0:
                     print("Pedido cancelado exitosamente.")
@@ -112,7 +112,7 @@ class Pedido:
         if conexion:
             try:
                 cursor = conexion.execute('''
-                    SELECT p.id, c.nombre AS cliente, m.nombre AS producto, m.precio, p.precio AS precio_total
+                    SELECT p.pedido, c.nombre AS cliente, m.nombre AS producto, m.precio, p.precio AS precio_total
                     FROM pedido p
                     INNER JOIN clientes c ON p.cliente = c.nombre
                     INNER JOIN menu m ON p.producto = m.nombre

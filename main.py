@@ -206,7 +206,8 @@ class Aplicacion:
         print(""" 
             1.- Crear Pedido
             2.- Cancelar Pedido
-            3.- Volver al menú principal
+            3.- Mostrar Pedidos
+            4.- Volver al menú principal
             """)
         try:
             opcion = int(input("Indica una opción del menú: "))
@@ -216,7 +217,7 @@ class Aplicacion:
                 self.cancelar_pedido()
             elif opcion == 3:
                 self.pedido.mostrar_pedidos()
-            elif opcion == 5:
+            elif opcion == 4:
                 print("Volver al menú principal")
             else:
                 print("Opción no válida, por favor intenta de nuevo.")
