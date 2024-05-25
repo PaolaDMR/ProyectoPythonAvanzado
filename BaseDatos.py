@@ -2,23 +2,43 @@ import sqlite3
 import os
 
 class BaseDatos:
+    """Clase para gestionar la base de datos
+    """
     
     def __init__(self, nombreBaseDatos):
+        """Se inicializa la clase Base de Datos
+
+        Args:
+            nombreBaseDatos (string): nombre de la base de datos.
+        """
         self.nombreBaseDatos = nombreBaseDatos
     
     def crearBaseDatos(self):
+        """Se  crea la base de datos
+        """
         try:
             conn = sqlite3.connect(self.nombreBaseDatos) 
         except Exception as e:
             print('Error al crear la Base de datos: {}'.format(e))
             
     def verificarBaseDatosExiste(self):
+        """Verifica la existencia de la base de datos
+
+        Returns:
+            bool: retorna verdadero si la base de datos existe, de lo contrario regresa false
+        """
         if os.path.isfile(self.nombreBaseDatos):
             return True
         else:
             return False
     
     def crearTablas(self):
+        """Crea las tablas necesarias en la base de datos
+        
+        Clientes: Contendrá informacion de los clientes
+        Menu: Contendrá información de los productos del menú.
+        Pedido: Contendrá información sobre los pedidos/ventas realizadas.
+        """
         conexion = self.abrirConexion()
 
         # conexion.execute('''CREATE TABLE productos
@@ -55,6 +75,9 @@ class BaseDatos:
         conexion.close()
     
     def abrirConexion(self):
+        """Abre la conexion de la base de datos, con sqlite3. Si la conexion se establece correctamente, devuelve el objeto de la conexion,
+        de otra forma, devuelve el mensaje de error al conectar con la BD
+        """
         try:
             conexion = sqlite3.connect(self.nombreBaseDatos) 
             return conexion
