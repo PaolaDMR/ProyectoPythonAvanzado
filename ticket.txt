@@ -1,0 +1,8 @@
+
+--- Ticket de Venta ---
+Cliente: Paola Martinez
+Producto: Hamburguesa Doble
+Cantidad: 2
+Precio unitario: 100.0
+Precio total: 200.0
+-----------------------
