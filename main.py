@@ -1,3 +1,8 @@
+#PROYECTO DE PYTHON AVANZADO
+
+#Clase Lunes - Miercoles 7:00pm
+#Nombre: Paola Denisse Martinez Ramos
+#Profesora: Suei Chong
 
 from Clientes import Clientes
 from Menu import Menu
