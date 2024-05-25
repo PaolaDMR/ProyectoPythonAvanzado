@@ -8,6 +8,10 @@ class Pedido:
     baseDatos = None
     
     def __init__(self):
+        """Configuracion de la base de datos del inventario. Si la base de datos
+        ya existe, abre la conexión existente. Si no existe, crea una nueva base de datos y las tablas
+        necesarias.
+        """
         self.baseDatos = BaseDatos('inventario.db')
         
         if self.baseDatos.verificarBaseDatosExiste():
@@ -17,6 +21,9 @@ class Pedido:
             self.baseDatos.crearTablas()
             
     def abrirConexion(self):
+        """Abre la conexion de la base de datos, con sqlite3. Si la conexion se establece correctamente, devuelve el objeto de la conexion,
+        de otra forma, devuelve el mensaje de error al conectar con la BD
+        """
         try:
             conexion = sqlite3.connect(self.baseDatos)
             return conexion
@@ -25,6 +32,13 @@ class Pedido:
             return None
     
     def crear_pedido(self, clave_cliente, clave_producto, cantidad):
+        """Método para crear un nuevo pedido, solicitando unicamente la clace del cliente, clave del producto y la cantidad solicitada.
+
+        Args:
+            clave_cliente (string): id del cliente
+            clave_producto (string): id del producto
+            cantidad (int): cantidad solicitada
+        """
         conexion = self.baseDatos.abrirConexion()
         if conexion:
             try:
@@ -70,6 +84,11 @@ class Pedido:
                 conexion.close()
 
     def cancelar_pedido(self, clave):
+        """Metodo para eliminar un pedido de la base de datos.
+
+        Args:
+            clave (string): id del pedido
+        """
         conexion = self.baseDatos.abrirConexion()
         if conexion:
             try:
@@ -87,6 +106,8 @@ class Pedido:
                 conexion.close()
                 
     def mostrar_pedidos(self):
+        """Metodo para mostrar los pedidos registrados en la base de datos.
+        """
         conexion = self.baseDatos.abrirConexion()
         if conexion:
             try:
@@ -116,6 +137,8 @@ class Pedido:
                 conexion.close()
 
     def imprimir_ticket(self, cliente, producto, cantidad, precio_unitario, precio_total):
+        """Metodo para imprimir el ticket y generar un archivo con la información del mismo.
+        """
         ticket = (
             "\n--- Ticket de Venta ---\n"
             f"Cliente: {cliente}\n"
